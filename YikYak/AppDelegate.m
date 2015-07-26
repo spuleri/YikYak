@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import <Parse/Parse.h>
 @interface AppDelegate ()
 
 @end
@@ -17,6 +17,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"XzW0aCyspHbynum8W6SdYD5UB2ogdLEfmLeYiVqA"
+                  clientKey:@"ULDn7KMYJQWdz4uctUKPx0JcR2sWbgm5FtF7KQ9D"];
+
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:168.0/255 green:215.0/255 blue:111.0/255 alpha:1]];
+    
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed: 168.0/255 green: 215.0/255 blue: 111.0/255 alpha: 1]];
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     return YES;
 }
 

@@ -1,0 +1,18 @@
+PODS:
+  - Bolts (1.1.5):
+    - Bolts/AppLinks (= 1.1.5)
+    - Bolts/Tasks (= 1.1.5)
+  - Bolts/AppLinks (1.1.5):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.1.5)
+  - Parse-iOS-SDK (1.3.0):
+    - Bolts (~> 1.1.2)
+
+DEPENDENCIES:
+  - Parse-iOS-SDK (~> 1.3)
+
+SPEC CHECKSUMS:
+  Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  Parse-iOS-SDK: f82937a6e1431a49438cd7d9d6199c74228a5846
+
+COCOAPODS: 0.37.2
