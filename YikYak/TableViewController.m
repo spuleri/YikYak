@@ -12,6 +12,7 @@
 #import "TableViewController.h"
 #import "TableViewCell.h"
 #import "DetailViewController.h"
+#import "Utility.h"
 
 
 @interface TableViewController ()
@@ -168,8 +169,8 @@
     // Was screwing up bcs count is an NSNumber, where count.text is wanting NSString
     cell.count.text = [[object valueForKey:@"count"] stringValue];
     
-    cell.time.text = [NSString stringWithFormat:@"%@%@", [@((indexPath.row + 1) * 3) stringValue], @"m ago" ];
-    cell.replies.text = [NSString stringWithFormat:@"%@%@", [@((indexPath.row + 1) * 1) stringValue], @" replies" ];
+    cell.time.text = [NSString stringWithFormat:@"%@", [Utility stringForTimeIntervalSinceCreated:[object valueForKey:@"createdAt"]]];
+    cell.replies.text = [NSString stringWithFormat:@"%@%@", [object valueForKey:@"replies"] , @" replies" ];
     
     return cell;
 }
@@ -192,8 +193,8 @@
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
         // Set destination view controller to DetailViewController to avoid the NavigationViewController in the middle (if you have it embedded into a navigation controller, if not ignore that part)
-        UINavigationController *nav = [segue destinationViewController];
-        DetailViewController *detailViewController = (DetailViewController *) nav.topViewController;
+        //UINavigationController *nav = [segue destinationViewController];
+        DetailViewController *detailViewController = [segue destinationViewController];
         detailViewController.yak = object;
     }
     

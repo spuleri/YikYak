@@ -157,7 +157,7 @@
                                     <outlet property="replies" destination="YBa-8e-oeX" id="RX6-Fe-Q8z"/>
                                     <outlet property="time" destination="xyU-3Z-otH" id="yEH-5i-wBe"/>
                                     <outlet property="yakText" destination="8J5-h3-88H" id="DqU-IN-03I"/>
-                                    <segue destination="20r-PS-mUf" kind="showDetail" identifier="yakDetails" id="hdw-8J-vcG"/>
+                                    <segue destination="dYL-d7-gCO" kind="show" identifier="yakDetails" id="VaL-kK-ZfO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -232,7 +232,7 @@
             </objects>
             <point key="canvasLocation" x="2864" y="590"/>
         </scene>
-        <!--Title-->
+        <!--Detail View Controller-->
         <scene sceneID="Ql2-Nm-IFz">
             <objects>
                 <viewController id="dYL-d7-gCO" customClass="DetailViewController" sceneMemberID="viewController">
@@ -252,7 +252,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRj-3O-jzd">
                                 <rect key="frame" x="16" y="118" width="338" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -311,9 +311,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Tvt-xw-7SU">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="L43-FI-aAM"/>
-                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="k0E-fm-zNt" id="Oxn-0W-02X"/>
                         <outlet property="tableView" destination="V8y-Ee-Rpe" id="RuA-3r-p9l"/>
@@ -323,7 +320,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVQ-Kc-hTT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2342" y="1424"/>
+            <point key="canvasLocation" x="1410" y="1492"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Sma-J6-j0L">
@@ -360,24 +357,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X4P-h1-jeg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2052" y="590"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="KfX-6B-DNj">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="20r-PS-mUf" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ILk-Tx-1Df">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="dYL-d7-gCO" kind="relationship" relationship="rootViewController" id="Y03-uQ-Th6"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qak-hj-VCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1506" y="1400"/>
         </scene>
     </scenes>
     <resources>

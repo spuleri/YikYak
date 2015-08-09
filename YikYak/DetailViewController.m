@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "CommentTableViewTableViewCell.h"
+#import "Utility.h"
 
 @interface DetailViewController ()
 @property CGFloat FOOTERHEIGHT;
@@ -21,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+
     // Do any additional setup after loading the view.
     self.contentHeight = 0;
     self.FOOTERHEIGHT = 50;
@@ -57,11 +60,11 @@
     NSLog(@"%@", [self.yak objectForKey:@"yak"]);
     self.yakText.text = [self.yak objectForKey:@"yak"];
     
-    NSDate *postTime = [self.yak updatedAt];
+    NSDate *postTime = [self.yak createdAt];
     //NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
     //[dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     //NSString *stringPostTime = [dateFormatter stringFromDate: postTime];
-    NSString *stringPostTime = [self stringForTimeIntervalSinceCreated:postTime];
+    NSString *stringPostTime = [Utility stringForTimeIntervalSinceCreated:postTime];
     
     NSLog(@"%@%@", @"was posted @: ", stringPostTime);
     self.timeLabel.text = stringPostTime;
@@ -123,14 +126,14 @@
     self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, _FOOTERHEIGHT)];
     NSLog(@"%@%f", @"Table view bounds width is: ", tableView.bounds.size.width );
     self.footerView.backgroundColor = [UIColor colorWithRed:243.0/255 green:243.0/255 blue:243.0/255 alpha:1];
-    self.commentView = [[UITextView alloc] initWithFrame:CGRectMake(10, 5, tableView.bounds.size.width - 310, 40)];
+    self.commentView = [[UITextView alloc] initWithFrame:CGRectMake(10, 5, tableView.bounds.size.width - 360, 40)];
     self.commentView.backgroundColor = [UIColor whiteColor];
     self.commentView.textContainerInset = UIEdgeInsetsMake(5, 5, 5, 5);
     self.commentView.layer.cornerRadius = 2;
     self.commentView.scrollsToTop = true;
     
     [self.footerView addSubview:self.commentView];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(tableView.bounds.size.width - 290, 10, 60, 30)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(tableView.bounds.size.width - 345, 10, 60, 30)];
     [button setTitle:@"Reply" forState:UIControlStateNormal];
     button.backgroundColor = [UIColor colorWithRed:155.0/255 green:189.0/255 blue:113.0/255 alpha:1];
     button.layer.cornerRadius = 5;
@@ -214,42 +217,6 @@
     [self.tableView reloadData];
 }
 
-// How to get relative time: eg. "5m ago", "3 days ago"
-//copypasted from: http://stackoverflow.com/questions/902950/iphone-convert-date-string-to-a-relative-time-stamp
-- (NSString *)stringForTimeIntervalSinceCreated:(NSDate *)dateTime
-{
-    NSDictionary *timeScale = @{@"second":@1,
-                                @"minute":@60,
-                                @"hour":@3600,
-                                @"day":@86400,
-                                @"week":@605800,
-                                @"month":@2629743,
-                                @"year":@31556926};
-    NSString *scale;
-    int timeAgo = 0-(int)[dateTime timeIntervalSinceNow];
-    if (timeAgo < 60) {
-        scale = @"second";
-    } else if (timeAgo < 3600) {
-        scale = @"minute";
-    } else if (timeAgo < 86400) {
-        scale = @"hour";
-    } else if (timeAgo < 605800) {
-        scale = @"day";
-    } else if (timeAgo < 2629743) {
-        scale = @"week";
-    } else if (timeAgo < 31556926) {
-        scale = @"month";
-    } else {
-        scale = @"year";
-    }
-    
-    timeAgo = timeAgo/[[timeScale objectForKey:scale] integerValue];
-    NSString *s = @"";
-    if (timeAgo > 1) {
-        s = @"s";
-    }
-    return [NSString stringWithFormat:@"%d %@%@ ago", timeAgo, scale, s];
-}
 
 /*
 #pragma mark - Navigation

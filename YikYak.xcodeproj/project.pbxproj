@@ -17,6 +17,7 @@
 		49F8452B1B5324AF004F1A61 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8452A1B5324AF004F1A61 /* TableViewController.m */; };
 		49F8452E1B5324DA004F1A61 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8452D1B5324DA004F1A61 /* TableViewCell.m */; };
 		549D88D287030BA6E11C008A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D86F1DDC5AC3D2CD9631B08 /* libPods.a */; };
+		E170C0B31B77FC0100354486 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E170C0B21B77FC0100354486 /* Utility.m */; };
 		E191CA181B658B9E00578E1F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E191CA171B658B9E00578E1F /* DetailViewController.m */; };
 		E191CA1B1B658BD100578E1F /* CommentTableViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E191CA1A1B658BD100578E1F /* CommentTableViewTableViewCell.m */; };
 		E191CA1D1B65CDC900578E1F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E191CA1C1B65CDC900578E1F /* MapKit.framework */; };
@@ -53,6 +54,8 @@
 		4EF3F2BFF67AC511C2576AD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5D86F1DDC5AC3D2CD9631B08 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6673128FAA20BE46DE80E469 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E170C0B11B77FC0100354486 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		E170C0B21B77FC0100354486 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		E191CA161B658B9E00578E1F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		E191CA171B658B9E00578E1F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		E191CA191B658BD100578E1F /* CommentTableViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewTableViewCell.h; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 				E191CA171B658B9E00578E1F /* DetailViewController.m */,
 				E191CA191B658BD100578E1F /* CommentTableViewTableViewCell.h */,
 				E191CA1A1B658BD100578E1F /* CommentTableViewTableViewCell.m */,
+				E170C0B11B77FC0100354486 /* Utility.h */,
+				E170C0B21B77FC0100354486 /* Utility.m */,
 				49F8450D1B532013004F1A61 /* Main.storyboard */,
 				49F845101B532013004F1A61 /* Images.xcassets */,
 				49F845121B532013004F1A61 /* LaunchScreen.xib */,
@@ -302,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E170C0B31B77FC0100354486 /* Utility.m in Sources */,
 				49F845091B532013004F1A61 /* AppDelegate.m in Sources */,
 				49F845061B532013004F1A61 /* main.m in Sources */,
 				E191CA1B1B658BD100578E1F /* CommentTableViewTableViewCell.m in Sources */,
