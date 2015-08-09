@@ -16,5 +16,8 @@
 
 @property (nonatomic, strong) NSArray *yaks;
 @property (nonatomic) CLLocationCoordinate2D currLocation;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) PFObject *selectedYak;
+
 
 @end

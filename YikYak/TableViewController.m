@@ -11,6 +11,7 @@
 
 #import "TableViewController.h"
 #import "TableViewCell.h"
+#import "DetailViewController.h"
 
 
 @interface TableViewController ()
@@ -20,7 +21,7 @@
 
 @implementation TableViewController
 
-CLLocationManager *locationManager;
+
 
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -69,17 +70,17 @@ CLLocationManager *locationManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    locationManager = [[CLLocationManager alloc] init];
+    self.locationManager = [[CLLocationManager alloc] init];
     // dont need to initialze curr location
     //currLocation  = [[CLLocationCoordinate2D alloc ] init];
 
     
     self.tableView.estimatedRowHeight = 60;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    locationManager.desiredAccuracy = 1000;
-    locationManager.delegate = self;
-    [locationManager requestWhenInUseAuthorization];
-    [locationManager startUpdatingLocation];
+    self.locationManager.desiredAccuracy = 1000;
+    self.locationManager.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,9 +101,19 @@ CLLocationManager *locationManager;
     
     CLLocationCoordinate2D queryLoc = self.currLocation;
     
-    PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:queryLoc.latitude longitude:queryLoc.longitude];
+    PFGeoPoint *geoPoint;
+    bool firstLoad;
+    // if initial loading
+    //if (queryLoc == NULL){
+      //   geoPoint = [PFGeoPoint geoPointWithLatitude:0.0 longitude:0.0];
+        //firstLoad = true;
+    //} else {
+        // get actual location
+        geoPoint = [PFGeoPoint geoPointWithLatitude:queryLoc.latitude longitude:queryLoc.longitude];
+    //}
     
-    if(CLLocationCoordinate2DIsValid(queryLoc)){
+    
+    if(firstLoad || CLLocationCoordinate2DIsValid(queryLoc)){
         [query whereKey:@"location" nearGeoPoint:geoPoint withinMiles:(10)];
         query.limit = 200;
         [query orderByDescending:@"createdAt"];
@@ -117,7 +128,7 @@ CLLocationManager *locationManager;
 }
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    [locationManager stopUpdatingLocation];
+    [self.locationManager stopUpdatingLocation];
     
     if(locations.count > 0) {
         CLLocation *myLocation = locations[0];
@@ -125,6 +136,10 @@ CLLocationManager *locationManager;
         NSLog(@"Users long is: %f", myLocation.coordinate.longitude);
         // Assigning current location :-)
         self.currLocation = myLocation.coordinate;
+        //reloading bcs first load was with currlocation == 0
+        //cuz PFTableView loads in [super viewDidLoad]
+        //so i dont have a location yet
+        [self loadObjects];
     } else {
         [self alert:@"Couldnt get ur location..."];
     }
@@ -157,6 +172,32 @@ CLLocationManager *locationManager;
     cell.replies.text = [NSString stringWithFormat:@"%@%@", [@((indexPath.row + 1) * 1) stringValue], @" replies" ];
     
     return cell;
+}
+
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"%@%i", @"You selected row! ", indexPath.row);
+//    
+//    //TableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
+//    
+//    self.selectedYak = [self objectAtIndexPath:indexPath];
+//    [self performSegueWithIdentifier:@"yakComments" sender:self];
+//}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if( [segue.identifier isEqualToString:@"yakDetails"]) {
+        // Capture the object (e.g. exam) the user has selected from the list
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        PFObject *object = [self.objects objectAtIndex:indexPath.row];
+        
+        // Set destination view controller to DetailViewController to avoid the NavigationViewController in the middle (if you have it embedded into a navigation controller, if not ignore that part)
+        UINavigationController *nav = [segue destinationViewController];
+        DetailViewController *detailViewController = (DetailViewController *) nav.topViewController;
+        detailViewController.yak = object;
+    }
+    
+    
 }
 
 

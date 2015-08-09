@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <CoreLocation/CoreLocation.h>
 
 
 @interface PostViewController : UIViewController <UITextViewDelegate, CLLocationManagerDelegate>
@@ -15,6 +16,7 @@
 @property (nonatomic) CLLocationCoordinate2D currLocation;
 @property (nonatomic) BOOL reset;
 @property (weak, nonatomic) IBOutlet UITextView *postView;
+@property (strong, nonatomic) CLLocationManager *postLocationManager;
 
 
 @end

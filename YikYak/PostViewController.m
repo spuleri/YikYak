@@ -14,7 +14,6 @@
 
 @implementation PostViewController
 
-CLLocationManager *postLocationManager;
 
 - (void)alert {
     
@@ -36,23 +35,26 @@ CLLocationManager *postLocationManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.postLocationManager = [[CLLocationManager alloc] init];
     self.reset = false;
     self.postView.selectedRange = NSMakeRange(0, 0);
     self.postView.delegate = self;
     [self.postView becomeFirstResponder];
     
-    postLocationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    postLocationManager.delegate = self;
-    [postLocationManager requestWhenInUseAuthorization];
-    [postLocationManager startUpdatingLocation];
+//    self.postLocationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.postLocationManager.desiredAccuracy = 1000;
+
+    self.postLocationManager.delegate = self;
+    [self.postLocationManager requestWhenInUseAuthorization];
+    [self.postLocationManager startUpdatingLocation];
 }
 
-- (void)postLocationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    [postLocationManager stopUpdatingLocation];
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    [self.postLocationManager stopUpdatingLocation];
     if(locations.count > 0) {
         CLLocation *myLocation = locations[0];
-        NSLog(@"Users lat is: %f", myLocation.coordinate.latitude);
-        NSLog(@"Users long is: %f", myLocation.coordinate.longitude);
+        NSLog(@"Users lat (from post) is: %f", myLocation.coordinate.latitude);
+        NSLog(@"Users long (from post) is: %f", myLocation.coordinate.longitude);
         // Assigning current location :-)
         self.currLocation = myLocation.coordinate;
     } else {
@@ -60,7 +62,7 @@ CLLocationManager *postLocationManager;
     }
 }
 
-- (void)postLocationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"%@",[error localizedDescription]);
 }
 
